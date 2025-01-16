@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddmhc251tc3ue"]
+
+[ext_resource type="Texture2D" uid="uid://5vru1gxpyclw" path="res://assets/sprites/as/platformPack_tile048.png" id="1_bxhop"]
+[ext_resource type="Script" path="res://scripts/next_level.gd" id="1_wsdd0"]
+[ext_resource type="FontFile" uid="uid://fyjmwnwbjde6" path="res://assets/sprites/as/PixelOperator8.ttf" id="3_lucne"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8vfa"]
+size = Vector2(29, 32)
+
+[node name="Next Level" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_wsdd0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-17, 16.5)
+scale = Vector2(0.484, 0.499)
+texture = ExtResource("1_bxhop")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-17, 17)
+shape = SubResource("RectangleShape2D_h8vfa")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -174.0
+offset_top = -51.0
+offset_right = 24.0
+offset_bottom = -2.0
+theme_override_fonts/font = ExtResource("3_lucne")
+theme_override_font_sizes/font_size = 8
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

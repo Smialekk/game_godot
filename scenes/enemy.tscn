@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://vd8csdil8ems"]
+
+[ext_resource type="Script" path="res://scripts/enemy_1.gd" id="1_1beju"]
+[ext_resource type="PackedScene" uid="uid://ctjuhtd4m7i3k" path="res://scenes/killzone.tscn" id="2_7bepn"]
+[ext_resource type="Texture2D" uid="uid://dibqbpu5qhx4c" path="res://assets/sprites/as/goblin.png" id="2_abx3q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvipr"]
+atlas = ExtResource("2_abx3q")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7qps"]
+atlas = ExtResource("2_abx3q")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mr632"]
+atlas = ExtResource("2_abx3q")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6k2u"]
+atlas = ExtResource("2_abx3q")
+region = Rect2(600, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82hd8"]
+atlas = ExtResource("2_abx3q")
+region = Rect2(750, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7emb"]
+atlas = ExtResource("2_abx3q")
+region = Rect2(900, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gp8h7"]
+atlas = ExtResource("2_abx3q")
+region = Rect2(1050, 0, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x6j1l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvipr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7qps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mr632")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6k2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82hd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7emb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gp8h7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vn0sy"]
+radius = 14.0
+
+[node name="enemy1" type="Node2D"]
+script = ExtResource("1_1beju")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -5.5)
+scale = Vector2(0.92, 0.713333)
+sprite_frames = SubResource("SpriteFrames_x6j1l")
+autoplay = "default"
+frame_progress = 0.266299
+
+[node name="killzone" parent="." instance=ExtResource("2_7bepn")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_vn0sy")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(0, 1)
+target_position = Vector2(13, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-15, 0)

@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkww8pegvs5"]
+
+[ext_resource type="Script" path="res://scripts/enemy_coming.gd" id="1_ar7ut"]
+[ext_resource type="Texture2D" uid="uid://vbgc7275uc64" path="res://assets/sprites/as/tile_0015.png" id="1_qexdt"]
+[ext_resource type="Texture2D" uid="uid://cqjryhchn3oe0" path="res://assets/sprites/as/tile_0016.png" id="2_0w0r5"]
+[ext_resource type="Texture2D" uid="uid://dtnmk63wway5b" path="res://assets/sprites/as/tile_0017.png" id="3_al5f1"]
+[ext_resource type="PackedScene" uid="uid://ctjuhtd4m7i3k" path="res://scenes/killzone.tscn" id="4_7iq4l"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yp8nq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qexdt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0w0r5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_al5f1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25r02"]
+size = Vector2(15, 15)
+
+[node name="Enemy_coming" type="CharacterBody2D"]
+script = ExtResource("1_ar7ut")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yp8nq")
+frame_progress = 0.434453
+
+[node name="killzone" parent="." instance=ExtResource("4_7iq4l")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_25r02")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 5)
+target_position = Vector2(0, 6)
